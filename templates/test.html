@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BargainBuddy</title> <!-- Change the title to the name of your website -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .container {
+            padding: 50px 0;
+            text-align: center; /* Center align the content within the container */
+        }
+        .logo {
+            width: 200px; /* Adjust the width of the logo */
+            margin-bottom: 20px; /* Add some bottom margin to the logo */
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-body {
+            padding: 20px;
+            text-align: center;
+        }
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        .btn-primary {
+            display: block;
+            margin: 10px auto; /* Adjusted margin for buttons */
+            width: 120px; /* Adjusted width for buttons */
+        }
+
+        body {
+            background-image: linear-gradient(to right, #74ebd5 0%, #9face6 100%); /* White background color */
+            color: #000000; /* Black text color */
+        }
+
+        .icons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 9999;
+        }
+
+        .icons a {
+            color: #000;
+            font-size: 24px;
+            margin-left: 10px;
+        }
+
+        .cart-popup {
+            position: absolute;
+            top: 50px;
+            right: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            display: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='logoS.png') }}" alt="BargainBuddy Logo" class="logo"> <!-- Use url_for to generate the URL for the logo image -->
+        <form method="post">
+            <div class="form-group">
+                <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Enter Product Name" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        <!-- Rest of your HTML content -->
+    </div>
+    <!-- User and Cart Icons -->
+    <div class="icons">
+        <a href="#" id="user-icon"><i class="fas fa-user"></i> <span id="user-email">{{ session['user_email'] }}</span></a>
+        <a href="#" id="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+    <!-- Cart Popup -->
+    <div id="cart-popup" class="cart-popup">
+        <!-- Products in the cart will be displayed here -->
+    </div>
+    <!-- Bootstrap and jQuery scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.card').addClass('show'); // Add the 'show' class to display the price cards immediately
+            
+            // Add to Cart button click event
+            $(".add-to-cart").click(function(){
+                var platform = $(this).data('platform');
+                var price = $(this).data('price');
+                alert('You added ' + platform + ' to cart for price ' + price);
+            });
+    
+            // Cart Icon click event
+            $("#cart-icon").click(function(e){
+                e.preventDefault();
+                // Navigate to the cart page
+                window.location.href = "/cart";
+            });
+    
+            // User Icon click event
+            $("#user-icon").click(function(e){
+                e.preventDefault();
+                // Prompt for logout
+                var logout = confirm("Are you sure you want to logout?");
+                if (logout) {
+                    // Perform logout action
+                    window.location.href = "/logout"; // Redirect to logout route
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>
+
+//*[@id="container"]/div[1]/div[3]/div[1]/div[2]/div[2]/div[1]/div[1]/div[1]/a[1]/div[3]/div[2]/div[1]/div[1]/div[1]
+div#container > div > div:nth-of-type(3) > div > div:nth-of-type(2) > div:nth-of-type(2) > div > div > div > a > div:nth-of-type(3) > div:nth-of-type(2) > div > div > div
+
+
+//*[@id="search"]/div[1]/div[1]/div[1]/span[1]/div[1]/div[4]/div[1]/div[1]/span[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[3]/div[1]/a[1]/span[1]/span[2]/span[2]
+//*[@id="search"]/div[1]/div[1]/div[1]/span[1]/div[1]/div[4]/div[1]/div[1]/span[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[3]/div[1]/div[1]/div[1]/div[3]/div[1]/a[1]/span[1]/span[2]/span[2]
